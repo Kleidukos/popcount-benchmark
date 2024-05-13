@@ -36,3 +36,20 @@ Benchmark
   FFI popcount:     OK
     55.8 ns ± 1.4 ns, 0.00x
 ```
+
+## Toolchains
+
+Use ghcup to install multiple toolchains:
+
+Install a gcc-enabled GHC (Find the URL for your system [here](https://github.com/haskell/ghcup-metadata/blob/develop/ghcup-0.0.8.yaml#L4122))
+
+* `ghcup install ghc -u 'https://downloads.haskell.org/~ghc/9.6.4/ghc-9.6.4-x86_64-fedora33-linux.tar.xz' 9.6.4-gcc`
+* CC=clang CXX=clang++ ghcup install ghc --force 9.6.4
+
+Then run:
+
+```bash
+$ cabal bench -w ghc-9.6.4
+# and
+$ cabal bench -w ghc-9.6.4-gcc
+```
