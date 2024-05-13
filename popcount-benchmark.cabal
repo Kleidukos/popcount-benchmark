@@ -23,3 +23,4 @@ benchmark benchmark
   include-dirs:     cbits
   includes:         popcount.h
   c-sources:        cbits/popcount.c
+  cc-options:       -O2 -mbmi
