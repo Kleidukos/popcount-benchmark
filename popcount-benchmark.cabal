@@ -1,0 +1,25 @@
+cabal-version:   3.6
+name:            popcount-benchmark
+version:         0.1.0.0
+license:         MIT
+license-file:    LICENSE
+build-type:      Simple
+
+-- Extra doc files to be distributed with the package, such as a CHANGELOG or a README.
+extra-doc-files: CHANGELOG.md
+
+benchmark benchmark
+  main-is:          Main.hs
+  hs-source-dirs:   bench
+  type:             exitcode-stdio-1.0
+  build-depends:
+    , base
+    , bytestring
+    , tasty-bench
+    , deepseq
+
+  ghc-options:      -fproc-alignment=64 -with-rtsopts=-A32m -Wall
+  default-language: GHC2021
+  include-dirs:     cbits
+  includes:         popcount.h
+  c-sources:        cbits/popcount.c
