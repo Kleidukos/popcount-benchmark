@@ -20,21 +20,41 @@ size_t popcount (char const * src, size_t len) {
 With a clang-enabled GHC 9.6:
 
 ```
-Benchmark
+1Mo
   ByteString.foldl: OK
-    55.8 μs ± 2.8 μs
+    1.32 ms ± 121 μs
   FFI popcount:     OK
-    56.3 ns ± 1.4 ns, 0.00x
+    50.0 ns ± 1.8 ns
+10Mo
+  ByteString.foldl: OK
+    13.2 ms ± 723 μs
+  FFI popcount:     OK
+    61.2 ns ± 5.9 ns
+100Mo
+  ByteString.foldl: OK
+    131  ms ± 3.2 ms
+  FFI popcount:     OK
+    38.8 ns ± 2.7 ns
 ```
 
 With a GCC-enabled GHC 9.4.6:
 
 ```
-Benchmark
+1Mo
   ByteString.foldl: OK
-    55.0 μs ± 2.9 μs
+    1.38 ms ± 106 μs
   FFI popcount:     OK
-    55.8 ns ± 1.4 ns, 0.00x
+    63.6 ns ± 1.5 ns
+10Mo
+  ByteString.foldl: OK
+    13.7 ms ± 1.4 ms
+  FFI popcount:     OK
+    88.5 ns ± 5.3 ns
+100Mo
+  ByteString.foldl: OK
+    136  ms ± 2.8 ms
+  FFI popcount:     OK
+    39.5 ns ± 3.3 ns
 ```
 
 ## Toolchains
@@ -50,6 +70,6 @@ Then run:
 
 ```bash
 $ cabal bench -w ghc-9.6.4
-# and
+$ cabal clean # important!
 $ cabal bench -w ghc-9.6.4-gcc
 ```
