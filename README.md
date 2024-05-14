@@ -1,6 +1,14 @@
 # Popcount benchmark
 
-This benchmark suite tests two popcount implementations:
+This benchmark suite compares the code generation of Clang and GCC, with a native Haskell as a baseline.
+The point is not to compare FFI & native Haskell, but rather to see how Clang does loop unrolling & AVX2 comapared to GCC.
+
+Please read the following files:
+  * [gcc-popcount.S](./gcc-popcount.S);
+  * [clang-popcount.S](./clang-popcount.S);
+  * This README.
+
+## Implementations
 
 * GHC-defined popcount on `Word8` is a combination of [`popCnt8#`](https://hackage.haskell.org/package/base-4.19.1.0/docs/GHC-Exts.html#v:popCnt8-35-) and ByteString's foldl'.
 * C-defined popcount:
