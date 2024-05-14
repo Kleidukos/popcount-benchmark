@@ -18,9 +18,8 @@ benchmark benchmark
     , tasty-bench
     , deepseq
 
-  ghc-options:      -fproc-alignment=64 -with-rtsopts=-A32m -Wall -O2
+  ghc-options:      -fproc-alignment=64 -with-rtsopts=-A32m -Wall -O2 -optc=-O2 -optc=-mbmi -optc=-g -optc=-mavx2
   default-language: GHC2021
   include-dirs:     cbits
   includes:         popcount.h
   c-sources:        cbits/popcount.c
-  cc-options:       -O2 -mbmi -g

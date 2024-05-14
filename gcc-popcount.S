@@ -8,43 +8,32 @@ Disassembly of section .text:
 #include <stddef.h>
 
 size_t popcount (char const * src, size_t len) {
-   0:	41 54                	push   r12
-   2:	55                   	push   rbp
-   3:	53                   	push   rbx
    size_t result = 0; 
    for (size_t i = 0; i < len; i++) {
-   4:	48 85 f6             	test   rsi,rsi
-   7:	74 37                	je     40 <popcount+0x40>
-   9:	48 89 fb             	mov    rbx,rdi
-   c:	4c 8d 24 37          	lea    r12,[rdi+rsi*1]
+   0:	48 85 f6             	test   rsi,rsi
+   3:	74 2b                	je     30 <popcount+0x30>
+   5:	48 01 fe             	add    rsi,rdi
    size_t result = 0; 
-  10:	31 ed                	xor    ebp,ebp
-  12:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+   8:	31 d2                	xor    edx,edx
+   a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
        result += __builtin_popcount(src[i]);
-  18:	0f be 3b             	movsx  edi,BYTE PTR [rbx]
+  10:	0f be 07             	movsx  eax,BYTE PTR [rdi]
    for (size_t i = 0; i < len; i++) {
-  1b:	48 83 c3 01          	add    rbx,0x1
+  13:	48 83 c7 01          	add    rdi,0x1
        result += __builtin_popcount(src[i]);
-  1f:	e8 00 00 00 00       	call   24 <popcount+0x24>	20: R_X86_64_PLT32	__popcountdi2-0x4
-  24:	48 98                	cdqe
-  26:	48 01 c5             	add    rbp,rax
+  17:	f3 0f b8 c0          	popcnt eax,eax
+  1b:	48 01 c2             	add    rdx,rax
    for (size_t i = 0; i < len; i++) {
-  29:	49 39 dc             	cmp    r12,rbx
-  2c:	75 ea                	jne    18 <popcount+0x18>
+  1e:	48 39 fe             	cmp    rsi,rdi
+  21:	75 ed                	jne    10 <popcount+0x10>
    }
    return result;
 }
-  2e:	48 89 e8             	mov    rax,rbp
-  31:	5b                   	pop    rbx
-  32:	5d                   	pop    rbp
-  33:	41 5c                	pop    r12
-  35:	c3                   	ret
-  36:	66 2e 0f 1f 84 00 00 00 00 00 	cs nop WORD PTR [rax+rax*1+0x0]
+  23:	48 89 d0             	mov    rax,rdx
+  26:	c3                   	ret
+  27:	66 0f 1f 84 00 00 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
    size_t result = 0; 
-  40:	31 ed                	xor    ebp,ebp
+  30:	31 d2                	xor    edx,edx
 }
-  42:	5b                   	pop    rbx
-  43:	48 89 e8             	mov    rax,rbp
-  46:	5d                   	pop    rbp
-  47:	41 5c                	pop    r12
-  49:	c3                   	ret
+  32:	48 89 d0             	mov    rax,rdx
+  35:	c3                   	ret
